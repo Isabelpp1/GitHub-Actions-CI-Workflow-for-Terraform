@@ -1,28 +1,28 @@
-# oyd-exercise-2-2 — GitHub Actions CI Workflow for Terraform
+# oyd-exercise-2-2 — Flujo de CI con GitHub Actions para Terraform
 
-This repository contains a Terraform workspace that provisions an S3 bucket, along with a GitHub Actions CI pipeline that validates every pull request targeting `main` and posts the full Terraform plan as a collapsible comment on the PR.
+Este repositorio contiene un workspace de Terraform que aprovisiona un bucket S3 en AWS, junto con un pipeline de CI en GitHub Actions que valida cada pull request hacia `main` y publica el plan completo de Terraform como comentario colapsable en el PR.
 
-## Workflow Overview
+## Descripción del Workflow
 
-The pipeline (`.github/workflows/terraform-ci.yml`) runs the following steps on every PR targeting `main`:
+El pipeline (`.github/workflows/terraform-ci.yml`) ejecuta los siguientes pasos en cada PR hacia `main`:
 
-1. **fmt** — `terraform fmt --check -recursive` fails the PR on formatting errors.
-2. **init** — `terraform init -backend=false` (no remote state required).
-3. **validate** — `terraform validate` checks configuration correctness.
-4. **plan** — `terraform plan -var-file=envs/dev/dev.tfvars` captures output to `plan.txt`.
-5. **comment** — Posts the plan inside a collapsible `<details>` block on the PR.
+1. **fmt** — `terraform fmt --check -recursive` falla el PR si hay errores de formato.
+2. **init** — `terraform init -backend=false` (no requiere estado remoto).
+3. **validate** — `terraform validate` verifica que la configuración sea válida.
+4. **plan** — `terraform plan -var-file=envs/dev/dev.tfvars` captura el output en `plan.txt`.
+5. **comentario** — Publica el plan dentro de un bloque colapsable `<details>` en el PR.
 
-## Repository Secrets Required
+## Secrets requeridos en el repositorio
 
-| Secret | Description |
+| Nombre | Descripción |
 |---|---|
-| `AWS_ACCESS_KEY_ID` | AWS access key |
-| `AWS_SECRET_ACCESS_KEY` | AWS secret access key |
-| `AWS_REGION` | AWS region (e.g. `us-east-1`) |
+| `AWS_ACCESS_KEY_ID` | Clave de acceso de AWS |
+| `AWS_SECRET_ACCESS_KEY` | Clave secreta de AWS |
+| `AWS_REGION` | Región de AWS (ej. `us-east-1`) |
 
-## Evidence
+## Evidencia
 
-<!-- Replace the URL below with the actual PR link after the pipeline runs successfully -->
-Pull Request: [PR #1 — Initial CI pipeline run](../../pull/1)
+<!-- Reemplaza la URL con el link real al PR -->
+Pull Request: [PR #1 — Ejecución exitosa del pipeline](../../pull/1)
 
 ![PR comment](evidence/pr-comment.png)
