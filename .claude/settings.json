@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C /Users/isabelpaiz/Documents/GitHub/GitHub-Actions-CI-Workflow-for-Terraform push -u origin main)"
+    ]
+  }
+}
